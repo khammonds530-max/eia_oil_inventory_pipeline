@@ -1,0 +1,37 @@
+
+[project]
+name = "EIA Crude Oil Inventory Pipeline"
+description = "Weekly U.S. commercial crude oil inventories compared with a five-year seasonal benchmark."
+maintainer = "Kayla Hammonds"
+repo_url = "https://github.com/khammonds530-max/eia_oil_inventory_pipeline"
+os_compatibility = ["Windows", "Linux", "macOS"]
+requires_chartbook = ">=0.5.0"
+
+[scripts]
+build = "doit"
+
+[dataframes.eia_crude_oil_inventories]
+name = "U.S. Crude Oil Inventories and Seasonal Benchmark"
+description = "Weekly commercial crude oil inventories excluding the Strategic Petroleum Reserve, with a 2021–2025 seasonal benchmark and inventory gaps."
+sources = ["EIA"]
+providers = ["U.S. Energy Information Administration"]
+provider_links = ["https://www.eia.gov/"]
+access_types = ["Public"]
+license = "Public U.S. government data"
+pull_method = "EIA API v2 over HTTPS, src/pull_eia.py"
+tags = ["Energy", "Crude Oil", "Inventories"]
+date_col = "date"
+path = "./_data/eia_crude_oil_inventories.csv"
+docs = """Weekly U.S. commercial crude oil inventories excluding the
+Strategic Petroleum Reserve (EIA series WCESTUS1).
+
+Columns:
+- date: Weekly observation date
+- inventories_mmbbl: Commercial crude oil inventories, million barrels
+- five_year_avg_mmbbl: Seasonal average for the same ISO week, 2021–2025
+- gap_mmbbl: Actual inventories minus seasonal average
+- gap_pct: Percentage difference from seasonal average
+
+Observation cutoff: November 13, 2026.
+The most recent available observation is November 6, 2026.
+"""

@@ -1,0 +1,9 @@
+[project]
+name = "eia-oil-inventory-pipeline"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "chartbook>=0.5.1",
+    "doit>=0.37.0",
+    "pandas>=3.1.1",
+]
